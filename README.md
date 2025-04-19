@@ -1,5 +1,5 @@
 ![Name](Textupper.png)
-![Name](Maskedname1.png)
+![Name](Maskedname.png)
 
 
  ### Profile Views :<br>
