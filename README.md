@@ -4,9 +4,8 @@
 
  ### Profile Views :<br>
   <img src="https://profile-counter.glitch.me/mananshah2254/count.svg" />
+<img src="https://profile-counter.deno.dev/mananshah2254/count.svg" alt="mananshah2254 :: Visitor's Count" />
 
-
-### How to reach me: <strong>(Click the badge to view my profiles.)</strong>
 
 <img src="https://img.shields.io/badge/Mail-%23D14836.svg?&style=for-the-badge&logo=gmail&logoColor=white" href="mailto:mshah130@hawk.iit.edu"> <a  href="https://www.instagram.com/manan0_0shah/"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white"></a>  <a href="https://www.linkedin.com/in/mananshah2254/"><img src="https://img.shields.io/badge/Linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" ></a> 
 
