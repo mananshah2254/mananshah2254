@@ -3,7 +3,7 @@
 
 
  ### Profile Views :<br>
-  <img src="https://profile-counter.glitch.me/mananshah2254/count.svg" />
+
 <img src="https://profile-counter.deno.dev/mananshah2254/count.svg" alt="mananshah2254 :: Visitor's Count" />
 
 
