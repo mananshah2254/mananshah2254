@@ -1,19 +1,17 @@
 <div align="center">
 
-<img src="Textupper.png" alt="Hello there! My name is" width="540" />
-
-<img src="name.png" alt="Manan Shah" width="720" />
+<img src="header.png" alt="Manan Shah — Graduate CS Student, Full-Stack & AI Developer" width="100%" />
 
 <br/>
 
 <a href="https://github.com/mananshah2254">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=23&duration=2800&pause=700&color=2E8CA8&center=true&vCenter=true&width=640&lines=Graduate+CS+Student+%40+Illinois+Tech;Full-Stack+%26+AI+Developer;Serverless+%26+Cloud-Native+Builder;Building+TrailMail+%F0%9F%9A%80" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=2600&pause=700&color=2E8CA8&center=true&vCenter=true&width=560&lines=Currently+building+TrailMail;Open+to+SWE+%26+Full-Stack+roles;Cloud-native%3A+AWS%2C+Azure%2C+Cloudflare;Always+learning%2C+always+shipping" alt="Typing SVG" />
 </a>
 
 <br/><br/>
 
 <a href="https://www.linkedin.com/in/mananshah2254/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-<a href="mailto:manan.hiren.shah@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+<a href="mailto:mshah130@hawk.iit.edu"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
 <a href="https://www.instagram.com/manan0_0shah/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
 
 <br/>
