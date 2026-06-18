@@ -1,24 +1,54 @@
-![Name](Textupper.png)
-![Name](Maskedname.png)
+<div align="center">
 
+<img src="Textupper.png" alt="Hello there! My name is" width="430" />
 
- ### Profile Views :<br>
+<img src="name.png" alt="Manan Shah" width="560" />
 
-<img src="https://profile-counter.deno.dev/mananshah2254/count.svg" alt="mananshah2254 :: Visitor's Count" />
+### 🎓 Graduate CS Student · 💻 Full-Stack & AI Developer · 🚀 Builder of TrailMail
 
+<a href="https://www.linkedin.com/in/mananshah2254/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+<a href="mailto:mshah130@hawk.iit.edu"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+<a href="https://www.instagram.com/manan0_0shah/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
 
-<img src="https://img.shields.io/badge/Mail-%23D14836.svg?&style=for-the-badge&logo=gmail&logoColor=white" href="mailto:mshah130@hawk.iit.edu"> <a  href="https://www.instagram.com/manan0_0shah/"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white"></a>  <a href="https://www.linkedin.com/in/mananshah2254/"><img src="https://img.shields.io/badge/Linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" ></a> 
+<br/>
 
-### Here are some ideas to help you get started:
+<img src="https://profile-counter.deno.dev/mananshah2254/count.svg" alt="Profile views" />
 
-- 🎓 Graduate Student in <strong>Computer Science<strong> at Illinois Institute of Technology in Chicago
-- 🔭 Exploring <strong>Full‑Stack Web Development and open‑source contributions<strong>
-- 🌱 Learning cloud‑native architecture and DevOps practices
-- 🔍 Seeking collaboration on <strong>AI‑powered web applications<strong> and serverless solutions
-- 💬 Ask me about Java, Python, ASP.​NET, AWS, Azure, data structures, and system design
-- ⚡ Fun fact: I once reverse‑engineered a vintage arcade machine to run custom games.
+</div>
 
+---
 
-### Tools I work upon : 🛠
+## 👋 About Me
 
-<img src="https://img.shields.io/badge/c++%20-%2300599C.svg?&style=for-the-badge&logo=c%2B%2B&logoColor=white">   <img src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white">   <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E">   <img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white">   <img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white">   <img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB">   <img src="https://img.shields.io/badge/bootstrap%20-%23563D7C.svg?&style=for-the-badge&logo=bootstrap&logoColor=white">   <img src="https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white"/>   <img src="http://img.shields.io/badge/-VS%20Code-000000?style=for-the-badge&logo=Visual-studio-code&logoColor=blue">
+- 🎓 Graduate student in **Computer Science** at the **Illinois Institute of Technology**, Chicago
+- 🚀 Building **[TrailMail](https://trailmails.com)** — a Chrome extension that predicts work emails from public company patterns and sends them straight from Gmail
+- 💻 Focused on **full-stack web development**, **AI-powered applications**, and **serverless / cloud-native** architecture
+- 🌱 Currently going deeper on **DevOps**, **AWS / Azure**, and **system design**
+- 💬 Ask me about **Java, Python, JavaScript, ASP.NET, React,** and **cloud**
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=java,python,js,cpp,cs,dotnet,react,html,css,bootstrap,aws,azure,cloudflare,git,github,vscode&perline=8" alt="Tech stack" />
+
+</div>
+
+---
+
+## 📊 GitHub Stats
+
+<div align="center">
+
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=mananshah2254&show_icons=true&hide_border=true&count_private=true&theme=tokyonight" alt="Manan's GitHub stats" />
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mananshah2254&layout=compact&hide_border=true&langs_count=8&theme=tokyonight" alt="Top languages" />
+
+</div>
+
+---
+
+<div align="center">
+<i>⚡ Always building. Open to collaboration on AI-powered and full-stack projects.</i>
+</div>
