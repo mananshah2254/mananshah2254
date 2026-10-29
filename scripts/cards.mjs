@@ -175,8 +175,8 @@ export const products = [
     eyebrow: "CHROME EXTENSION · CADENCES",
     desc: "Multi-step LinkedIn cadence engine: visit, connect, message, follow up. Sequenced with delays, daily caps and warm-up, running in your own browser session.",
     chips: ["JavaScript", "Chrome MV3", "Service Worker"] },
-  { key: "relay", name: "Relay for iOS", color: "#c49bff", sweep: 7.2, status: "IN DEVELOPMENT", domain: "github.com/mananshah2254/relay-ios",
-    eyebrow: "NATIVE iOS · SWIFTUI",
+  { key: "relay", name: "Relay", color: "#c49bff", sweep: 7.2, status: "LIVE", domain: "App Store · free · iOS 17+",
+    eyebrow: "iOS APP · ON THE APP STORE",
     desc: "Referral outreach from the iPhone share sheet: confirm role and company, find contacts, attach a résumé and queue Gmail sends with daily caps and a review mode.",
     chips: ["Swift", "SwiftUI", "Share Extension", "Node"] },
 ];
@@ -312,7 +312,7 @@ function terminal() {
     ["kv", "stack", "[ Python, FastAPI, Amazon Bedrock, Pinecone, Kafka, Kubernetes ]"],
     ["kv", "background", "3+ yrs across fintech and enterprise insurance"],
     ["kv", "education", "MS Computer Science, Illinois Tech, 2025"],
-    ["kv", "shipping", "DialDo · Repo Run · TrailMail · GitPixelPush · OutreachOS · Relay"],
+    ["kv", "shipping", "DialDo · Repo Run · TrailMail · GitPixelPush · Relay (App Store) · OutreachOS"],
     ["ok", "ambiguous problem in, working system out."],
   ];
   const H = 64 + rows.length * 27 + 34;

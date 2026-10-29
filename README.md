@@ -34,7 +34,7 @@ Things that are live, that strangers use, and that I maintain. Every card links 
 <a href="https://trailmails.com"><img src="assets/card-trailmail.svg" width="49%" alt="TrailMail — work-email prediction and Gmail outreach" /></a>
 <a href="https://gitpixelpush.com"><img src="assets/card-gitpixelpush.svg" width="49%" alt="GitPixelPush — pixel art on your contribution graph" /></a>
 <a href="https://github.com/mananshah2254/OutreachOS"><img src="assets/card-outreachos.svg" width="49%" alt="OutreachOS — multi-step LinkedIn cadences" /></a>
-<a href="https://github.com/mananshah2254/relay-ios"><img src="assets/card-relay.svg" width="49%" alt="Relay for iOS — referral outreach from the share sheet" /></a>
+<a href="https://apps.apple.com/us/app/relay-job-outreach/id6816765463"><img src="assets/card-relay.svg" width="49%" alt="Relay — job referral outreach for iPhone, on the App Store" /></a>
 
 </div>
 
@@ -50,7 +50,7 @@ Things that are live, that strangers use, and that I maintain. Every card links 
 | **TrailMail** | Resolves company → domain → address pattern with a self-scored confidence, then sends through Gmail with a send-only scope. No server ever holds your data. | [site](https://trailmails.com) · [web store](https://chromewebstore.google.com/detail/bgmdpfdhgaignpljdpkmneeggbiolkce) · [source](https://github.com/mananshah2254/trailmail) |
 | **GitPixelPush** | A browser-side engine that writes dated commits through the Git Data API. One ~100 line Cloudflare Worker for OAuth, nothing stored anywhere. | [site](https://gitpixelpush.com) · [source](https://github.com/mananshah2254/gitpixelpush) |
 | **OutreachOS** | Drives the Voyager API directly rather than clicking the DOM, the only approach that survives a redesign. Per-action caps, warm-up, working hours and jitter. | [source](https://github.com/mananshah2254/OutreachOS) |
-| **Relay for iOS** | SwiftUI app with a Share Extension and a dependency-free Node service. Two lanes: email goes out up front while the slow lookup finishes in the background. | [source](https://github.com/mananshah2254/relay-ios) |
+| **Relay** | Native SwiftUI app on the App Store, with a Share Extension and a dependency-free Node service. Two lanes: email goes out up front while the slow lookup finishes in the background. | [App Store](https://apps.apple.com/us/app/relay-job-outreach/id6816765463) · [source](https://github.com/mananshah2254/relay-ios) |
 
 </details>
 
