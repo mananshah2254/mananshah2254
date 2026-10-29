@@ -54,11 +54,11 @@ const logSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" 
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${BG0}"/><stop offset="1" stop-color="${BG1}"/></linearGradient></defs>
   <style>
     .t{font-family:${SANS}} .m{font-family:${MONO}}
-    .row{opacity:0;animation:row .6s cubic-bezier(.2,.7,.2,1) forwards}
+    .row{animation:row .6s cubic-bezier(.2,.7,.2,1) both}
     @keyframes row{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
     .pulse{animation:pulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
-    @media (prefers-reduced-motion: reduce){*{animation:none!important}.row{opacity:1}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
   <rect width="${W}" height="${H}" rx="16" fill="url(#bg)"/>
   <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="15.5" fill="none" stroke="${INK}" stroke-opacity=".09" stroke-width="1.5"/>
@@ -113,9 +113,9 @@ const langSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${LH}
   </defs>
   <style>
     .t{font-family:${SANS}} .m{font-family:${MONO}}
-    .row{opacity:0;animation:row .6s cubic-bezier(.2,.7,.2,1) forwards}
+    .row{animation:row .6s cubic-bezier(.2,.7,.2,1) both}
     @keyframes row{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-    @media (prefers-reduced-motion: reduce){*{animation:none!important}.row{opacity:1}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
   <rect width="${W}" height="${LH}" rx="16" fill="url(#bg)"/>
   <rect x=".75" y=".75" width="${W - 1.5}" height="${LH - 1.5}" rx="15.5" fill="none" stroke="${INK}" stroke-opacity=".09" stroke-width="1.5"/>

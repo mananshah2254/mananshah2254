@@ -117,11 +117,11 @@ function card(p) {
   </defs>
   <style>
     .t{font-family:${SANS}} .m{font-family:${MONO}}
-    .rise{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+    .rise{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
     @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
     .pulse{animation:pulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
-    @media (prefers-reduced-motion: reduce){*{animation:none!important}.rise{opacity:1}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
   <g clip-path="url(#clip)">
     <rect width="${W}" height="${H}" fill="url(#bg)"/>
@@ -244,11 +244,11 @@ function banner() {
   </defs>
   <style>
     .t{font-family:${SANS}} .m{font-family:${MONO}}
-    .in{opacity:0;animation:in 1s cubic-bezier(.2,.7,.2,1) forwards}
+    .in{animation:in 1s cubic-bezier(.2,.7,.2,1) both}
     @keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
     .blink{animation:blink 1.1s steps(1) infinite}
     @keyframes blink{50%{opacity:0}}
-    @media (prefers-reduced-motion: reduce){*{animation:none!important}.in{opacity:1}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
   <g clip-path="url(#frame)">
     <rect width="${W}" height="${H}" fill="url(#sky)"/>
@@ -324,7 +324,7 @@ function terminal() {
     else if (r[0] === "ok") content = `<tspan fill="#39d353">✓</tspan> <tspan fill="${PEACH}" font-style="italic">${esc(r[1])}</tspan>`;
     else content = `<tspan fill="${PEACH}">${esc(r[1].padEnd(11))}</tspan><tspan fill="${DIM}">: </tspan><tspan fill="${INK}">${esc(r[2])}</tspan>`;
     // typewriter reveal: a clip rect grows across the line
-    return `<clipPath id="c${i}"><rect x="40" y="${y - 18}" height="26" width="0"><animate attributeName="width" from="0" to="1120" dur="${r[0] === "cmd" ? 1.0 : 0.55}s" begin="${d}s" fill="freeze" calcMode="spline" keySplines=".3 0 .7 1" keyTimes="0;1"/></rect></clipPath>
+    return `<clipPath id="c${i}"><rect x="40" y="${y - 18}" height="26" width="1120"><set attributeName="width" to="0" begin="0s"/><animate attributeName="width" from="0" to="1120" dur="${r[0] === "cmd" ? 1.0 : 0.55}s" begin="${d}s" fill="freeze" calcMode="spline" keySplines=".3 0 .7 1" keyTimes="0;1"/></rect></clipPath>
     <text x="44" y="${y}" xml:space="preserve" clip-path="url(#c${i})">${content}</text>`;
   }).join("\n    ");
   const end = (0.5 + rows.length * step + 0.4).toFixed(2);
@@ -364,14 +364,15 @@ function timeline() {
   </defs>
   <style>
     .t{font-family:${SANS}} .m{font-family:${MONO}}
-    .in{opacity:0;animation:in .8s cubic-bezier(.2,.7,.2,1) forwards}
+    .in{animation:in .8s cubic-bezier(.2,.7,.2,1) both}
     @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-    @media (prefers-reduced-motion: reduce){*{animation:none!important}.in{opacity:1}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
   <rect width="${W}" height="${H}" rx="16" fill="url(#bg)"/>
   <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="15.5" fill="none" stroke="${INK}" stroke-opacity=".09" stroke-width="1.5"/>
   <path d="M 80 100 H 1120" stroke="${INK}" stroke-opacity=".08" stroke-width="3" stroke-linecap="round"/>
-  <path d="M 80 100 H 1120" stroke="url(#line)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1040" stroke-dashoffset="1040">
+  <path d="M 80 100 H 1120" stroke="url(#line)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1040" stroke-dashoffset="0">
+    <set attributeName="stroke-dashoffset" to="1040" begin="0s"/>
     <animate attributeName="stroke-dashoffset" from="1040" to="0" dur="2.4s" begin=".2s" fill="freeze" calcMode="spline" keySplines=".5 0 .2 1" keyTimes="0;1"/>
   </path>
   <circle r="4" fill="#fff" opacity="0">
