@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 236" width="600" height="236" role="img" aria-label="Relay for iOS: Referral outreach from the iPhone share sheet: confirm role and company, find contacts, attach a résumé and queue Gmail sends with daily caps and a review mode.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0b16"/><stop offset="1" stop-color="#11132a"/></linearGradient>
+    <radialGradient id="glow" cx="12%" cy="40%" r="45%"><stop offset="0" stop-color="#c49bff" stop-opacity=".22"/><stop offset="1" stop-color="#c49bff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c49bff" stop-opacity="0"/><stop offset=".5" stop-color="#c49bff" stop-opacity=".9"/><stop offset="1" stop-color="#c49bff" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="-600 0;600 0" dur="7.2s" repeatCount="indefinite"/>
+    </linearGradient>
+    <clipPath id="clip"><rect width="600" height="236" rx="16"/></clipPath>
+  </defs>
+  <style>
+    .t{font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace}
+    .rise{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .pulse{animation:pulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}.rise{opacity:1}}
+  </style>
+  <g clip-path="url(#clip)">
+    <rect width="600" height="236" fill="url(#bg)"/>
+    <rect width="600" height="236" fill="url(#glow)"/>
+    <g opacity=".05" stroke="#f7f5f0"><path d="M 0 0 V 236"/><path d="M 40 0 V 236"/><path d="M 80 0 V 236"/><path d="M 120 0 V 236"/><path d="M 160 0 V 236"/><path d="M 200 0 V 236"/><path d="M 240 0 V 236"/><path d="M 280 0 V 236"/><path d="M 320 0 V 236"/><path d="M 360 0 V 236"/><path d="M 400 0 V 236"/><path d="M 440 0 V 236"/><path d="M 480 0 V 236"/><path d="M 520 0 V 236"/><path d="M 560 0 V 236"/><path d="M 600 0 V 236"/><path d="M 0 0 H 600"/><path d="M 0 40 H 600"/><path d="M 0 80 H 600"/><path d="M 0 120 H 600"/><path d="M 0 160 H 600"/><path d="M 0 200 H 600"/></g>
+    <g transform="translate(22 58)">
+    <path id="rlLoop" d="M 20 80 C 20 30, 100 30, 100 60 S 40 100, 60 50 S 110 20, 116 24" fill="none"/>
+    <path d="M 20 80 C 20 30, 100 30, 100 60 S 40 100, 60 50 S 110 20, 116 24" fill="none" stroke="#c49bff" stroke-opacity=".18" stroke-dasharray="2 5"/>
+    <g>
+      <animateMotion dur="4.4s" repeatCount="indefinite" rotate="auto"><mpath href="#rlLoop"/></animateMotion>
+      <path d="M -10 -8 L 12 0 L -10 8 L -5 0 Z" fill="#c49bff"/>
+      <path d="M -5 0 L 12 0" stroke="#0a0b16" stroke-width="1"/>
+    </g></g>
+    <path d="M 150 30 V 206" stroke="#f7f5f0" stroke-opacity=".07"/>
+
+    <g class="rise" style="animation-delay:.05s">
+      <text class="m" x="170" y="42" font-size="11" letter-spacing="2.2" fill="#c49bff">NATIVE iOS · SWIFTUI</text>
+    </g>
+    <g class="rise" style="animation-delay:.15s">
+      <text class="t" x="168" y="80" font-size="29" font-weight="700" fill="#f7f5f0" letter-spacing=".3">Relay for iOS</text>
+    </g>
+    <g class="rise" style="animation-delay:.3s">
+      <text class="t" x="170" y="110" font-size="13.5" fill="#a9a4b8">Referral outreach from the iPhone share sheet: confirm</text>
+      <text class="t" x="170" y="130" font-size="13.5" fill="#a9a4b8">role and company, find contacts, attach a résumé and queue</text>
+      <text class="t" x="170" y="150" font-size="13.5" fill="#a9a4b8">Gmail sends with daily caps and a review mode.</text>
+    </g>
+    <g class="rise" style="animation-delay:.45s"><g transform="translate(170 190)"><rect width="52.5" height="22" rx="11" fill="#c49bff" fill-opacity=".09" stroke="#c49bff" stroke-opacity=".28"/><text x="26.25" y="15" text-anchor="middle" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11" fill="#f7f5f0" opacity=".85">Swift</text></g><g transform="translate(229.5 190)"><rect width="66.30000000000001" height="22" rx="11" fill="#c49bff" fill-opacity=".09" stroke="#c49bff" stroke-opacity=".28"/><text x="33.150000000000006" y="15" text-anchor="middle" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11" fill="#f7f5f0" opacity=".85">SwiftUI</text></g><g transform="translate(302.8 190)"><rect width="121.5" height="22" rx="11" fill="#c49bff" fill-opacity=".09" stroke="#c49bff" stroke-opacity=".28"/><text x="60.75" y="15" text-anchor="middle" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11" fill="#f7f5f0" opacity=".85">Share Extension</text></g><g transform="translate(431.3 190)"><rect width="45.6" height="22" rx="11" fill="#c49bff" fill-opacity=".09" stroke="#c49bff" stroke-opacity=".28"/><text x="22.8" y="15" text-anchor="middle" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11" fill="#f7f5f0" opacity=".85">Node</text></g></g>
+
+    <g transform="translate(430.6 24)">
+      <rect width="147.39999999999998" height="24" rx="12" fill="#c49bff" fill-opacity=".1" stroke="#c49bff" stroke-opacity=".35"/>
+      <circle class="pulse" cx="14" cy="12" r="4" fill="#c49bff"/>
+      <text class="m" x="24" y="16.5" font-size="11" letter-spacing="1.2" fill="#f7f5f0">IN DEVELOPMENT</text>
+    </g>
+    <text class="m" x="576" y="186" text-anchor="end" font-size="11.5" fill="#c49bff" opacity=".9">github.com/mananshah2254/relay-ios ↗</text>
+  </g>
+  <rect x=".75" y=".75" width="598.5" height="234.5" rx="15.5" fill="none" stroke="#f7f5f0" stroke-opacity=".09" stroke-width="1.5"/>
+  <rect x=".75" y=".75" width="598.5" height="234.5" rx="15.5" fill="none" stroke="url(#edge)" stroke-width="1.5"/>
+</svg>

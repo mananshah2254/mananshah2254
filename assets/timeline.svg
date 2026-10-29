@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 230" width="1200" height="230" role="img" aria-label="Career: Duck Creek Technologies 2021 to 2023, MS Computer Science at Illinois Tech 2023 to 2025, PayPal AI and LLM platform since April 2025.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0b16"/><stop offset="1" stop-color="#11132a"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a9a4b8" stop-opacity=".2"/><stop offset=".55" stop-color="#c49bff"/><stop offset="1" stop-color="#ffab70"/></linearGradient>
+  </defs>
+  <style>
+    .t{font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace}
+    .in{opacity:0;animation:in .8s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}.in{opacity:1}}
+  </style>
+  <rect width="1200" height="230" rx="16" fill="url(#bg)"/>
+  <rect x=".75" y=".75" width="1198.5" height="228.5" rx="15.5" fill="none" stroke="#f7f5f0" stroke-opacity=".09" stroke-width="1.5"/>
+  <path d="M 80 100 H 1120" stroke="#f7f5f0" stroke-opacity=".08" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 80 100 H 1120" stroke="url(#line)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1040" stroke-dashoffset="1040">
+    <animate attributeName="stroke-dashoffset" from="1040" to="0" dur="2.4s" begin=".2s" fill="freeze" calcMode="spline" keySplines=".5 0 .2 1" keyTimes="0;1"/>
+  </path>
+  <circle r="4" fill="#fff" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="3s" begin="2.8s" repeatCount="indefinite"/>
+    <animate attributeName="cx" values="80;1120" dur="3s" begin="2.8s" repeatCount="indefinite"/>
+    <set attributeName="cy" to="100" begin="0s"/>
+  </circle>
+  <g class="in" style="animation-delay:0.30s">
+    
+    <circle cx="150" cy="100" r="10" fill="#0a0b16" stroke="#a9a4b8" stroke-width="3"/>
+    <circle cx="150" cy="100" r="4" fill="#a9a4b8"/>
+    <text class="m" x="150" y="62" text-anchor="middle" font-size="11.5" letter-spacing="1.6" fill="#a9a4b8">2019</text>
+    <text class="t" x="150" y="146" text-anchor="middle" font-size="18" font-weight="700" fill="#f7f5f0">First commit</text>
+    <text class="t" x="150" y="170" text-anchor="middle" font-size="13" fill="#a9a4b8">algorithms, web apps, open source</text>
+  </g>
+  <g class="in" style="animation-delay:0.85s">
+    
+    <circle cx="450" cy="100" r="10" fill="#0a0b16" stroke="#8ab4ff" stroke-width="3"/>
+    <circle cx="450" cy="100" r="4" fill="#8ab4ff"/>
+    <text class="m" x="450" y="62" text-anchor="middle" font-size="11.5" letter-spacing="1.6" fill="#8ab4ff">MAR 2021 — JUL 2023</text>
+    <text class="t" x="450" y="146" text-anchor="middle" font-size="18" font-weight="700" fill="#f7f5f0">Duck Creek Technologies</text>
+    <text class="t" x="450" y="170" text-anchor="middle" font-size="13" fill="#a9a4b8">Software Engineer · enterprise insurance</text>
+  </g>
+  <g class="in" style="animation-delay:1.40s">
+    
+    <circle cx="750" cy="100" r="10" fill="#0a0b16" stroke="#c49bff" stroke-width="3"/>
+    <circle cx="750" cy="100" r="4" fill="#c49bff"/>
+    <text class="m" x="750" y="62" text-anchor="middle" font-size="11.5" letter-spacing="1.6" fill="#c49bff">AUG 2023 — MAY 2025</text>
+    <text class="t" x="750" y="146" text-anchor="middle" font-size="18" font-weight="700" fill="#f7f5f0">Illinois Institute of Technology</text>
+    <text class="t" x="750" y="170" text-anchor="middle" font-size="13" fill="#a9a4b8">MS, Computer Science</text>
+  </g>
+  <g class="in" style="animation-delay:1.95s">
+    <circle cx="1050" cy="100" r="10" fill="none" stroke="#ffab70" stroke-width="1.5"><animate attributeName="r" values="10;24" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite"/></circle>
+    <circle cx="1050" cy="100" r="10" fill="#0a0b16" stroke="#ffab70" stroke-width="3"/>
+    <circle cx="1050" cy="100" r="4" fill="#ffab70"/>
+    <text class="m" x="1050" y="62" text-anchor="middle" font-size="11.5" letter-spacing="1.6" fill="#ffab70">APR 2025 — NOW</text>
+    <text class="t" x="1050" y="146" text-anchor="middle" font-size="18" font-weight="700" fill="#f7f5f0">PayPal</text>
+    <text class="t" x="1050" y="170" text-anchor="middle" font-size="13" fill="#a9a4b8">Software Engineer · AI and LLM platform</text>
+  </g>
+</svg>

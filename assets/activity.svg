@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 364" width="590" height="364" role="img" aria-label="Recent commits: gitpixelpush: Explain demo workflow, partial runs, and safe cleanup; relay-ios: Document required server dev dependency installation (#1); repo-run: Add contributor guide for Repo Run (#1); mananshah2254.github.io: Link Reporun from portfolio projects; linkedin-email-finder-site: Add responsible email discovery guide; repo-run-downloads: Link Windows icon fix installer">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0b16"/><stop offset="1" stop-color="#11132a"/></linearGradient></defs>
+  <style>
+    .t{font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace}
+    .row{opacity:0;animation:row .6s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes row{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+    .pulse{animation:pulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}.row{opacity:1}}
+  </style>
+  <rect width="590" height="364" rx="16" fill="url(#bg)"/>
+  <rect x=".75" y=".75" width="588.5" height="362.5" rx="15.5" fill="none" stroke="#f7f5f0" stroke-opacity=".09" stroke-width="1.5"/>
+  <text class="m" x="26" y="38" font-size="12" letter-spacing="2.4" fill="#ffab70">SHIPPING LOG</text>
+  <circle class="pulse" cx="422" cy="34" r="4" fill="#39d353"/>
+  <text class="m" x="564" y="38" text-anchor="end" font-size="11" fill="#a9a4b8">updated 2026-10-29</text>
+  <path d="M 36 70 V 290" stroke="#f7f5f0" stroke-opacity=".1" stroke-width="2"/>
+  <g class="row" style="animation-delay:0.15s">
+    <circle cx="36" cy="70" r="5" fill="#0a0b16" stroke="#39d353" stroke-width="2"/>
+    <text class="m" x="56" y="66" font-size="12.5" font-weight="600" fill="#f7f5f0">gitpixelpush</text>
+    <text class="m" x="564" y="66" text-anchor="end" font-size="11" fill="#a9a4b8">OCT 23</text>
+    <text class="t" x="56" y="84" font-size="12.5" fill="#a9a4b8">Explain demo workflow, partial runs, and safe cleanup</text>
+  </g>
+  <g class="row" style="animation-delay:0.27s">
+    <circle cx="36" cy="114" r="5" fill="#0a0b16" stroke="#ffab70" stroke-width="2"/>
+    <text class="m" x="56" y="110" font-size="12.5" font-weight="600" fill="#f7f5f0">relay-ios</text>
+    <text class="m" x="564" y="110" text-anchor="end" font-size="11" fill="#a9a4b8">OCT 19</text>
+    <text class="t" x="56" y="128" font-size="12.5" fill="#a9a4b8">Document required server dev dependency installation (#1)</text>
+  </g>
+  <g class="row" style="animation-delay:0.39s">
+    <circle cx="36" cy="158" r="5" fill="#0a0b16" stroke="#ffab70" stroke-width="2"/>
+    <text class="m" x="56" y="154" font-size="12.5" font-weight="600" fill="#f7f5f0">repo-run</text>
+    <text class="m" x="564" y="154" text-anchor="end" font-size="11" fill="#a9a4b8">OCT 19</text>
+    <text class="t" x="56" y="172" font-size="12.5" fill="#a9a4b8">Add contributor guide for Repo Run (#1)</text>
+  </g>
+  <g class="row" style="animation-delay:0.51s">
+    <circle cx="36" cy="202" r="5" fill="#0a0b16" stroke="#ffab70" stroke-width="2"/>
+    <text class="m" x="56" y="198" font-size="12.5" font-weight="600" fill="#f7f5f0">mananshah2254.github.io</text>
+    <text class="m" x="564" y="198" text-anchor="end" font-size="11" fill="#a9a4b8">OCT 11</text>
+    <text class="t" x="56" y="216" font-size="12.5" fill="#a9a4b8">Link Reporun from portfolio projects</text>
+  </g>
+  <g class="row" style="animation-delay:0.63s">
+    <circle cx="36" cy="246" r="5" fill="#0a0b16" stroke="#ffab70" stroke-width="2"/>
+    <text class="m" x="56" y="242" font-size="12.5" font-weight="600" fill="#f7f5f0">linkedin-email-finder-site</text>
+    <text class="m" x="564" y="242" text-anchor="end" font-size="11" fill="#a9a4b8">OCT 11</text>
+    <text class="t" x="56" y="260" font-size="12.5" fill="#a9a4b8">Add responsible email discovery guide</text>
+  </g>
+  <g class="row" style="animation-delay:0.75s">
+    <circle cx="36" cy="290" r="5" fill="#0a0b16" stroke="#ffab70" stroke-width="2"/>
+    <text class="m" x="56" y="286" font-size="12.5" font-weight="600" fill="#f7f5f0">repo-run-downloads</text>
+    <text class="m" x="564" y="286" text-anchor="end" font-size="11" fill="#a9a4b8">OCT 9</text>
+    <text class="t" x="56" y="304" font-size="12.5" fill="#a9a4b8">Link Windows icon fix installer</text>
+  </g>
+</svg>
