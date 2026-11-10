@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177 52" width="177" height="52" role="img" aria-label="LINKEDIN">
+  <defs><linearGradient id="e" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="0.85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    <animateTransform attributeName="gradientTransform" type="translate" values="-177 0;177 0" dur="3.6s" repeatCount="indefinite"/></linearGradient></defs>
+  <rect x="1" y="1" width="175" height="50" rx="25" fill="#0a0b16" stroke="#f7f5f0" stroke-opacity="0.22" stroke-width="1.5"/>
+  <rect x="1" y="1" width="175" height="50" rx="25" fill="none" stroke="url(#e)" stroke-width="1.5"/>
+  <g transform="translate(34 26)" color="#ffab70"><rect x="-8" y="-8" width="16" height="16" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M -4 -1 V 4 M -4 -4.4 V -4.2 M 0 4 V -1 M 0 1 Q 0 -1.4 2.2 -1.4 Q 4.4 -1.4 4.4 1 V 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></g>
+  <text x="56" y="31" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" letter-spacing="2.6" fill="#f7f5f0">LINKEDIN</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 189 52" width="189" height="52" role="img" aria-label="PORTFOLIO">
+  <defs><linearGradient id="e" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="0.55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    <animateTransform attributeName="gradientTransform" type="translate" values="-189 0;189 0" dur="3.6s" repeatCount="indefinite"/></linearGradient></defs>
+  <rect x="1" y="1" width="187" height="50" rx="25" fill="#ffab70" stroke="#ffab70" stroke-opacity="1" stroke-width="1.5"/>
+  <rect x="1" y="1" width="187" height="50" rx="25" fill="none" stroke="url(#e)" stroke-width="1.5"/>
+  <g transform="translate(34 26)" color="#1a120a"><path d="M -8 5 L 0 -8 L 8 5 L 0 1.5 Z" fill="currentColor"/></g>
+  <text x="56" y="31" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" letter-spacing="2.6" fill="#1a120a">PORTFOLIO</text>
+</svg>

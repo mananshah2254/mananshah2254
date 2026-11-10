@@ -88,6 +88,32 @@ const motifs = {
       <path d="M -10 -8 L 12 0 L -10 8 L -5 0 Z" fill="${c}"/>
       <path d="M -5 0 L 12 0" stroke="${BG0}" stroke-width="1"/>
     </g>`,
+  // one window lifts off the desktop and beams to a phone
+  remotewindow: c => `
+    <rect x="8" y="22" width="78" height="56" rx="7" fill="#101a12" stroke="${c}" stroke-opacity=".35" stroke-width="1.5"/>
+    <rect x="16" y="32" width="26" height="16" rx="3" fill="${c}" opacity=".12"/>
+    <rect x="16" y="54" width="40" height="14" rx="3" fill="${c}" opacity=".12"/>
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 0;34 6;34 6;0 0" keyTimes="0;.15;.5;.85;1" dur="4.6s" repeatCount="indefinite"/>
+      <rect x="46" y="30" width="32" height="22" rx="4" fill="${c}"/>
+      <circle cx="51" cy="35" r="1.4" fill="${BG0}"/><circle cx="56" cy="35" r="1.4" fill="${BG0}"/>
+      <path d="M 51 42 H 72 M 51 46.5 H 66" stroke="${BG0}" stroke-width="1.6" stroke-linecap="round"/>
+    </g>
+    <rect x="76" y="26" width="38" height="68" rx="8" fill="none" stroke="${c}" stroke-width="1.8" opacity=".9"/>
+    <path d="M 90 88 H 100" stroke="${c}" stroke-width="1.8" stroke-linecap="round"/>`,
+  // a flick of the wrist throws a file from the Mac to a phone
+  airbridge: c => `
+    <path id="abArc" d="M 22 78 Q 60 -6 98 60" fill="none"/>
+    <path d="M 22 78 Q 60 -6 98 60" fill="none" stroke="${c}" stroke-opacity=".22" stroke-dasharray="3 6"/>
+    <rect x="6" y="70" width="32" height="22" rx="4" fill="${BG0}" stroke="${c}" stroke-width="1.6"/><path d="M 2 96 H 42" stroke="${c}" stroke-width="1.6" stroke-linecap="round"/>
+    <rect x="88" y="56" width="20" height="36" rx="5" fill="${BG0}" stroke="${c}" stroke-width="1.6"/>
+    <g transform="translate(60 100)"><rect x="-9" y="-11" width="18" height="22" rx="5" fill="none" stroke="${c}" stroke-opacity=".6" stroke-width="1.4"/><path d="M -5 -16 H 5 M -5 16 H 5" stroke="${c}" stroke-opacity=".6" stroke-width="1.4" stroke-linecap="round"/>
+      <circle r="3" fill="${c}"><animate attributeName="r" values="3;9;3" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0;.9" dur="2.8s" repeatCount="indefinite"/></circle></g>
+    <g>
+      <animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#abArc"/></animateMotion>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" repeatCount="indefinite"/>
+      <path d="M -6 -8 H 3 L 7 -4 V 8 H -6 Z" fill="${c}"/>
+    </g>`,
 };
 
 /* ------------------------------------------------------------------ */
@@ -163,6 +189,10 @@ export const products = [
     eyebrow: "DESKTOP APP · macOS + WINDOWS",
     desc: "Know what a repo needs before you run it. Reads manifests, checks your machine for missing runtimes and version conflicts, and previews every command before it runs.",
     chips: ["TypeScript", "Electron", "React", "Supabase", "Vitest"] },
+  { key: "remotewindow", name: "Remote Window", color: "#b4e86a", sweep: 6.6, status: "LIVE", domain: "remotewindow.app",
+    eyebrow: "macOS APP · WEBRTC",
+    desc: "Share one Mac window, not your whole screen. A native host streams it with app audio to any phone or browser. Viewers open a link and you approve each one.",
+    chips: ["Swift", "WebRTC", "TypeScript", "Signaling"] },
   { key: "trailmail", name: "TrailMail", color: "#ffab70", sweep: 6.5, status: "LIVE", domain: "trailmails.com",
     eyebrow: "CHROME EXTENSION · OUTREACH",
     desc: "Predicts work emails from public company patterns and sends personalized outreach through Gmail. Entirely client side, send-only OAuth scope, open and click tracking.",
@@ -179,122 +209,248 @@ export const products = [
     eyebrow: "iOS APP · ON THE APP STORE",
     desc: "Referral outreach from the iPhone share sheet: confirm role and company, find contacts, attach a résumé and queue Gmail sends with daily caps and a review mode.",
     chips: ["Swift", "SwiftUI", "Share Extension", "Node"] },
+  { key: "airbridge", name: "AirBridge", color: "#6fd3e8", sweep: 7.4, status: "PROTOTYPE", domain: "open source on GitHub",
+    eyebrow: "WATCH · MAC · iPHONE",
+    desc: "Flick your wrist and a file leaves the Mac for a nearby iPhone. Core Motion gesture, Bonjour discovery, X25519 and AES-GCM, SHA-256 verified on arrival.",
+    chips: ["Swift", "watchOS", "Core Motion", "Network.framework"] },
 ];
 
 for (const p of products) writeFileSync(new URL(`card-${p.key}.svg`, OUT), card(p));
 
 /* ------------------------------------------------------------------ */
-/*  hero banner                                                        */
+/*  the bay: one scene generator, two times of day                     */
+/*                                                                    */
+/*  The banner is golden hour and the footer is dusk, the same arc    */
+/*  the portfolio flies. Everything is deterministic (seeded), so the */
+/*  daily Action regenerates byte-identical files and never produces  */
+/*  a spurious diff.                                                  */
 /* ------------------------------------------------------------------ */
-function banner() {
-  const W = 1200, H = 400;
-  // agent graph: nodes on the right that light up as a "request" travels
-  const nodes = [[860, 120], [960, 80], [1060, 130], [1010, 210], [900, 220], [1110, 220], [960, 300], [1080, 300]];
-  const edges = [[0, 1], [1, 2], [0, 4], [1, 3], [2, 3], [3, 4], [2, 5], [3, 5], [4, 6], [3, 6], [5, 7], [6, 7]];
-  const left = nodes.map(([x, y]) => [W - x, y]); // mirrored constellation on the left
-  const net = (pts, delay, op) => `
-    <g opacity="${op}">
-      ${edges.map(([a, b], i) => `<path d="M ${pts[a][0]} ${pts[a][1]} L ${pts[b][0]} ${pts[b][1]}" stroke="${PEACH}" stroke-opacity=".16" stroke-width="1"/>
-      <path d="M ${pts[a][0]} ${pts[a][1]} L ${pts[b][0]} ${pts[b][1]}" stroke="${PEACH}" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="14 400" stroke-dashoffset="14" opacity=".9">
-        <animate attributeName="stroke-dashoffset" values="14;-200" dur="3.2s" begin="${(delay + i * 0.27).toFixed(2)}s" repeatCount="indefinite"/></path>`).join("")}
-      ${pts.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="9" fill="${PEACH}" opacity=".08"><animate attributeName="r" values="6;13;6" dur="${3 + (i % 3)}s" begin="${i * 0.4}s" repeatCount="indefinite"/></circle>
-      <circle cx="${x}" cy="${y}" r="3.4" fill="${i % 3 === 0 ? PEACH : INK}"><animate attributeName="opacity" values=".35;1;.35" dur="${2.4 + (i % 4) * 0.5}s" begin="${i * 0.3}s" repeatCount="indefinite"/></circle>`).join("")}
+function rng(seed) {
+  let s = seed;
+  return () => (s = (s * 16807) % 2147483647) / 2147483647;
+}
+
+function scene({ H, HZ, dusk, seed, copy, strip, label }) {
+  const W = 1200, r = rng(seed);
+  const SX = 742;                                   // the sun sits inside the bridge span
+  const f = (n) => n.toFixed(1);
+  const sky = dusk
+    ? [[0, "#060812"], [0.42, "#11183a"], [0.72, "#352c58"], [0.9, "#a4523e"], [1, "#f2904c"]]
+    : [[0, "#18274a"], [0.34, "#454d7c"], [0.6, "#a8748c"], [0.82, "#f0a676"], [1, "#ffdca4"]];
+  const sea = dusk
+    ? [[0, "#7a4136"], [0.16, "#2a2440"], [0.5, "#0f1528"], [1, "#060812"]]
+    : [[0, "#e0a584"], [0.14, "#6a6682"], [0.5, "#27314e"], [1, "#0b1020"]];
+  const stops = (a) => a.map(([o, c]) => `<stop offset="${o}" stop-color="${c}"/>`).join("");
+  const far = dusk ? "#141a34" : "#6a5f84", near = dusk ? "#0b0e1e" : "#3b3856";
+  const wall = dusk ? "#080a16" : "#1c1d33", wallHi = dusk ? "#0d1020" : "#2a2a45";
+  const steel = dusk ? "#1d0d0c" : "#8a2f20", steelHi = dusk ? "#4a1c15" : "#d2573a";
+  const lit = "#ffd28c";
+
+  /* stars: a few at golden hour, a sky full at dusk */
+  let stars = "";
+  for (let i = 0, n = dusk ? 90 : 16; i < n; i++) {
+    const x = r() * W, y = r() * (HZ - 70), rad = 0.5 + r() * 0.9, d = 2 + r() * 4;
+    stars += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(rad)}" fill="#eef0ff" opacity="${f(0.25 + r() * 0.5)}">${r() < 0.4 ? `<animate attributeName="opacity" values=".15;.9;.15" dur="${f(d)}s" begin="${f(r() * 4)}s" repeatCount="indefinite"/>` : ""}</circle>`;
+  }
+
+  /* cloud bank, lit from below */
+  let clouds = "";
+  for (let i = 0; i < 6; i++) {
+    const x = 380 + r() * 760, y = 40 + r() * (HZ - 150), w = 90 + r() * 130;
+    clouds += `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(w)}" ry="${f(6 + r() * 7)}" fill="${dusk ? "#3a2c4c" : "#ffc79a"}" opacity="${f(0.3 + r() * 0.35)}"/>`;
+  }
+
+  /* headlands: jagged ridges closing the bay on both sides */
+  const ridge = (x0, x1, peak, col, jag) => {
+    let d = `M ${x0} ${HZ}`;
+    const n = 14;
+    for (let i = 0; i <= n; i++) {
+      const u = i / n, env = Math.pow(Math.sin(u * Math.PI), 0.8);
+      d += ` L ${f(x0 + (x1 - x0) * u)} ${f(HZ - env * peak * (0.7 + r() * jag))}`;
+    }
+    return `<path d="${d} L ${x1} ${HZ} Z" fill="${col}"/>`;
+  };
+  const hills = ridge(-40, 470, 82, far, 0.5) + ridge(960, 1260, 70, far, 0.5)
+    + ridge(-60, 300, 52, near, 0.4) + ridge(1050, 1280, 44, near, 0.4);
+
+  /* skylines on both shores, with lit and twinkling windows */
+  let city = "", windows = "";
+  const tower = (x, w, h) => {
+    const y = HZ - h;
+    city += `<rect x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(h)}" fill="${r() < 0.5 ? wall : wallHi}"/>`;
+    if (h > 46 && r() < 0.35) city += `<rect x="${f(x + w / 2 - 0.6)}" y="${f(y - 9)}" width="1.2" height="9" fill="${wall}"/>`;
+    for (let wy = y + 4; wy < HZ - 4; wy += 6) {
+      for (let wx = x + 2.5; wx < x + w - 3; wx += 5) {
+        if (r() > (dusk ? 0.27 : 0.1)) continue;
+        const tw = r() < 0.16;
+        windows += `<rect x="${f(wx)}" y="${f(wy)}" width="2.4" height="3" fill="${r() < 0.82 ? lit : "#cfe0ff"}" opacity="${f(0.55 + r() * 0.45)}">${tw ? `<animate attributeName="opacity" values="1;.15;1" dur="${f(3 + r() * 6)}s" begin="${f(r() * 6)}s" repeatCount="indefinite"/>` : ""}</rect>`;
+      }
+    }
+  };
+  for (let x = 0; x < 470;) { const w = 15 + r() * 20; tower(x, w, 26 + r() * 46 + (1 - x / 470) * 44); x += w + r() * 5; }
+  for (let x = 1012; x < W;) { const w = 15 + r() * 20; tower(x, w, 26 + r() * 40 + ((x - 1012) / 190) * 46); x += w + r() * 5; }
+  // a far skyline through the bridge, tiny and hazy
+  let farCity = "";
+  for (let x = 610; x < 880;) { const w = 5 + r() * 8; farCity += `<rect x="${f(x)}" y="${f(HZ - 5 - r() * 15)}" width="${f(w)}" height="22" fill="${dusk ? "#151a36" : "#8a6f8c"}"/>`; x += w + r() * 5; }
+
+  /* the bridge: towers, a sagging main cable, suspenders, a lit deck */
+  const DY = HZ - 30, TOP = HZ - 128, X0 = 452, X1 = 1030, T0 = 594, T1 = 884;
+  const cableY = (x) => {
+    if (x < T0) { const u = (x - X0) / (T0 - X0); return DY + (TOP - DY) * u * u; }
+    if (x > T1) { const u = (X1 - x) / (X1 - T1); return DY + (TOP - DY) * u * u; }
+    const u = (x - T0) / (T1 - T0); return TOP + (DY - 12 - TOP) * 4 * u * (1 - u);
+  };
+  let cable = `M ${X0} ${DY}`, hang = "";
+  for (let x = X0; x <= X1; x += 6) cable += ` L ${x} ${f(cableY(x))}`;
+  for (let x = X0 + 12; x < X1; x += 12) hang += `M ${x} ${f(cableY(x))} V ${DY} `;
+  let deckLights = "";
+  for (let x = X0 + 10; x < X1; x += 20) deckLights += `<circle cx="${x}" cy="${DY - 3}" r="${dusk ? 1.5 : 1}" fill="${lit}" opacity="${dusk ? 0.95 : 0.5}"/>`;
+  const towerSvg = (x) => `
+      <rect x="${x - 5}" y="${TOP - 6}" width="3.6" height="${HZ - TOP + 6}" fill="${steel}"/><rect x="${x + 1.4}" y="${TOP - 6}" width="3.6" height="${HZ - TOP + 6}" fill="${steelHi}"/>
+      ${[0.14, 0.4, 0.66].map((k) => `<rect x="${x - 5}" y="${f(TOP + (DY - TOP) * k)}" width="10" height="3" fill="${steel}"/>`).join("")}
+      <circle cx="${x}" cy="${TOP - 10}" r="2.2" fill="#ff5a48"><animate attributeName="opacity" values="1;.1;1" dur="1.9s" begin="${x === T0 ? 0 : 0.95}s" repeatCount="indefinite"/></circle>`;
+  const bridge = `
+    <g id="bridge${seed}">
+      <path d="${hang}" stroke="${steel}" stroke-width=".7" opacity=".85"/>
+      <path d="${cable}" fill="none" stroke="${steelHi}" stroke-width="2.2" stroke-linejoin="round"/>
+      <rect x="${X0}" y="${DY}" width="${X1 - X0}" height="4.5" fill="${steel}"/>
+      <rect x="${X0}" y="${DY}" width="${X1 - X0}" height="1.2" fill="${steelHi}"/>
+      ${towerSvg(T0)}${towerSvg(T1)}
+    </g>`;
+  let traffic = "";
+  for (let i = 0; i < 5; i++) {
+    const back = i % 2, dur = 11 + r() * 9;
+    traffic += `<circle cy="${DY - 1.2}" r="1.3" fill="${back ? "#ff6a58" : "#fff3d6"}"><animate attributeName="cx" values="${back ? `${X1};${X0}` : `${X0};${X1}`}" dur="${f(dur)}s" begin="-${f(r() * dur)}s" repeatCount="indefinite"/></circle>`;
+  }
+
+  /* water: glitter path under the sun, drifting swell lines */
+  let glitter = "";
+  for (let i = 0; i < 46; i++) {
+    const t = Math.pow(r(), 0.8), y = HZ + 4 + t * (H - HZ - 60);
+    const spread = 14 + t * 150, x = SX + (r() - 0.5) * spread * 2, w = 6 + t * 30 * r();
+    glitter += `<rect x="${f(x - w / 2)}" y="${f(y)}" width="${f(w)}" height="${f(1 + t * 1.6)}" rx="1" fill="${dusk ? "#ff9a5c" : "#ffe9c2"}" opacity="0"><animate attributeName="opacity" values="0;${f(0.35 + r() * 0.6)};0" dur="${f(1.6 + r() * 3)}s" begin="${f(r() * 4)}s" repeatCount="indefinite"/></rect>`;
+  }
+  let swell = "";
+  for (let i = 0; i < 26; i++) {
+    const t = r(), y = HZ + 10 + t * (H - HZ - 60), x = r() * W, w = 30 + t * 110;
+    swell += `<path d="M ${f(x)} ${f(y)} h ${f(w)}" stroke="#ffffff" stroke-opacity="${f(0.03 + r() * 0.07)}" stroke-width="${f(0.6 + t)}"><animateTransform attributeName="transform" type="translate" values="0 0;${f(24 + t * 50)} 0;0 0" dur="${f(9 + r() * 9)}s" repeatCount="indefinite"/></path>`;
+  }
+
+  /* the floatplane: high wing, twin pontoons, crossing the sky */
+  const planePath = dusk
+    ? `M -120 40 C 300 26, 640 44, 900 ${HZ - 70} S 1180 ${HZ - 44}, 1340 ${HZ - 40}`
+    : `M -120 58 C 240 30, 560 44, 820 ${HZ - 170} S 1140 ${HZ - 150}, 1340 ${HZ - 190}`;
+  const plane = `
+    <path id="fly${seed}" d="${planePath}" fill="none"/>
+    <g>
+      <animateMotion dur="${dusk ? 26 : 22}s" repeatCount="indefinite" rotate="auto"><mpath href="#fly${seed}"/></animateMotion>
+      <g transform="scale(1.25)">
+        <path d="M -150 -1 H -30" stroke="url(#trail${seed})" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M -30 -1 L -38 -14 L -29 -14 L -20 -5 Z" fill="#e8703a"/>
+        <path d="M -30 0 Q -22 -8 -6 -8 L 12 -8 Q 23 -7 28 -1 L 28 2 Q 14 6 0 6 L -22 3 Z" fill="${dusk ? "#c9cbd6" : "#f6f1e8"}"/>
+        <path d="M 2 -6 h 9 q 5 0 8 4 h -17 Z" fill="#1c2436"/>
+        <rect x="-10" y="-12" width="26" height="3" rx="1.5" fill="#e8703a"/>
+        <path d="M -2 -9 L 3 5 M 12 -9 L 9 5" stroke="${dusk ? "#8d8f9c" : "#bdb8ae"}" stroke-width="1"/>
+        <path d="M -4 6 L -7 12 M 10 6 L 12 12" stroke="${dusk ? "#8d8f9c" : "#bdb8ae"}" stroke-width="1.2"/>
+        <path d="M -18 12 H 18 Q 24 12 26 14 Q 24 16.5 18 16.5 H -16 Q -20 16 -18 12 Z" fill="#141826"/>
+        <ellipse cx="29.5" cy="0" rx="1.1" ry="9" fill="#ffffff" opacity=".5"><animate attributeName="ry" values="9;3;9" dur=".12s" repeatCount="indefinite"/></ellipse>
+        <circle cx="-31" cy="-13" r="1.6" fill="#ff5a48"><animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/></circle>
+        <circle cx="3" cy="8" r="1.4" fill="#ffffff"><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.8;.9;1" dur="1.6s" repeatCount="indefinite"/></circle>
+      </g>
     </g>`;
 
-  const stars = Array.from({ length: 34 }, (_, i) => {
-    const x = (i * 211 + 37) % W, y = (i * 97 + 23) % 250, r = 0.6 + (i % 3) * 0.35;
-    return `<circle cx="${x}" cy="${y}" r="${r}" fill="${INK}"><animate attributeName="opacity" values=".1;.7;.1" dur="${3 + (i % 5)}s" begin="${(i % 7) * 0.6}s" repeatCount="indefinite"/></circle>`;
-  }).join("");
-
-  // perspective floor: horizontal lines scroll toward the viewer, verticals converge
-  const floorY = 300;
-  const verts = Array.from({ length: 25 }, (_, i) => {
-    const x = -600 + i * 100;
-    return `<path d="M ${600 + (x - 600) * 0.08} ${floorY} L ${x} ${H + 40}"/>`;
-  }).join("");
-  const horiz = Array.from({ length: 6 }, (_, i) => `<path d="M 0 0 H ${W}">
-      <animateTransform attributeName="transform" type="translate" values="0 ${floorY};0 ${H + 20}" dur="4.8s" begin="${-i * 0.8}s" repeatCount="indefinite" calcMode="spline" keySplines=".6 0 1 1" keyTimes="0;1"/>
-      <animate attributeName="stroke-opacity" values="0;.5" dur="4.8s" begin="${-i * 0.8}s" repeatCount="indefinite"/></path>`).join("");
-
-  const roles = [
-    "AI ENGINEER  ·  PAYPAL  ·  SAN FRANCISCO",
-    "RAG PIPELINES THAT HOLD UP IN PRODUCTION",
-    "AGENTS  ·  TOOL CALLING  ·  EMBEDDINGS",
-    "SIX PRODUCTS, BUILT AND SHIPPED SOLO",
-  ];
-  const slot = 3.5, cycle = slot * roles.length;
-  const k1 = (0.06 / roles.length).toFixed(3), k2 = ((slot - 0.4) / cycle).toFixed(3), k3 = (slot / cycle).toFixed(3);
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Manan Shah. AI Engineer at PayPal, San Francisco. Builds RAG pipelines, agents and ships products.">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(label)}">
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${BG0}"/><stop offset=".55" stop-color="${BG1}"/><stop offset="1" stop-color="${BG2}"/></linearGradient>
-    <radialGradient id="dusk" cx="50%" cy="78%" r="60%"><stop offset="0" stop-color="${PEACH}" stop-opacity=".28"/><stop offset=".5" stop-color="#ff7d5c" stop-opacity=".07"/><stop offset="1" stop-color="${PEACH}" stop-opacity="0"/></radialGradient>
-    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="${INK}"/><stop offset=".42" stop-color="${INK}"/><stop offset=".5" stop-color="#ffc79b"/><stop offset=".58" stop-color="${INK}"/><stop offset="1" stop-color="${INK}"/>
-      <animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0;-1 0" dur="7s" repeatCount="indefinite"/>
-    </linearGradient>
-    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${PEACH}" stop-opacity="0"/><stop offset=".5" stop-color="${PEACH}"/><stop offset="1" stop-color="${PEACH}" stop-opacity="0"/></linearGradient>
-    <linearGradient id="floorFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".25" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
-    <mask id="floorMask"><rect y="${floorY}" width="${W}" height="${H - floorY}" fill="url(#floorFade)"/></mask>
-    <linearGradient id="trailFade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${PEACH}" stop-opacity="0"/><stop offset="1" stop-color="${PEACH}" stop-opacity=".85"/></linearGradient>
-    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8"/></filter>
-    <filter id="tiny" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2"/></filter>
-    <path id="arc" d="M -60 330 C 250 250, 470 230, 640 250 S 1000 300, 1270 200"/>
-    <clipPath id="frame"><rect width="${W}" height="${H}" rx="20"/></clipPath>
+    <linearGradient id="sky${seed}" x1="0" y1="0" x2="0" y2="${HZ}" gradientUnits="userSpaceOnUse">${stops(sky)}</linearGradient>
+    <linearGradient id="sea${seed}" x1="0" y1="${HZ}" x2="0" y2="${H}" gradientUnits="userSpaceOnUse">${stops(sea)}</linearGradient>
+    <radialGradient id="halo${seed}" cx="${SX}" cy="${HZ - (dusk ? -6 : 16)}" r="${dusk ? 300 : 360}" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="${dusk ? "#ffb070" : "#fff6dc"}" stop-opacity="${dusk ? 0.75 : 0.95}"/><stop offset=".22" stop-color="${dusk ? "#ff8a4a" : "#ffd08a"}" stop-opacity="${dusk ? 0.3 : 0.5}"/><stop offset="1" stop-color="#ff9a5c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="scrim${seed}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#080912" stop-opacity=".9"/><stop offset=".34" stop-color="#080912" stop-opacity=".74"/><stop offset=".58" stop-color="#080912" stop-opacity="0"/></linearGradient>
+    <linearGradient id="fade${seed}" x1="0" y1="${HZ}" x2="0" y2="${HZ + 120}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="trail${seed}" x1="-150" y1="0" x2="-30" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".55"/></linearGradient>
+    <linearGradient id="edge${seed}" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${PEACH}" stop-opacity="0"/><stop offset=".5" stop-color="${PEACH}"/><stop offset="1" stop-color="${PEACH}" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="-1200 0;1200 0" dur="7s" repeatCount="indefinite"/></linearGradient>
+    <mask id="refl${seed}"><rect x="0" y="${HZ}" width="${W}" height="130" fill="url(#fade${seed})"/></mask>
+    <filter id="soft${seed}" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="7"/></filter>
+    <clipPath id="clip${seed}"><rect width="${W}" height="${H}" rx="18"/></clipPath>
   </defs>
   <style>
-    .t{font-family:${SANS}} .m{font-family:${MONO}}
-    .in{animation:in 1s cubic-bezier(.2,.7,.2,1) both}
-    @keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-    .blink{animation:blink 1.1s steps(1) infinite}
-    @keyframes blink{50%{opacity:0}}
+    .t{font-family:${SANS}} .m{font-family:${MONO}} .s{font-family:Georgia,'Times New Roman',serif;font-style:italic}
+    .rise{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+    @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    .ping{animation:ping 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+    @keyframes ping{0%{opacity:.8;transform:scale(1)}80%,100%{opacity:0;transform:scale(3.2)}}
     @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
-  <g clip-path="url(#frame)">
-    <rect width="${W}" height="${H}" fill="url(#sky)"/>
-    <rect width="${W}" height="${H}" fill="url(#dusk)"/>
-    <g>${stars}</g>
-    <ellipse cx="600" cy="${floorY}" rx="560" ry="40" fill="#ff8a5c" opacity=".12" filter="url(#soft)"/>
-    <g mask="url(#floorMask)" stroke="${PEACH}" stroke-opacity=".22" stroke-width="1" fill="none">${verts}${horiz}</g>
-    <path d="M 0 ${floorY} H ${W}" stroke="url(#rule)" stroke-width="1.2" opacity=".6"/>
-
-    ${net(nodes, 0, 0.9)}
-    ${net(left, 1.6, 0.55)}
-
-    <use href="#arc" fill="none" stroke="${PEACH}" stroke-opacity=".1" stroke-width="1.2" stroke-dasharray="5 11"/>
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.86;1" dur="9s" repeatCount="indefinite"/>
-      <path d="M -130 0 L 0 0" stroke="url(#trailFade)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-      <circle r="10" fill="${PEACH}" opacity=".3" filter="url(#tiny)"/>
-      <circle r="3.6" fill="#fff3e6"/>
-      <animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath href="#arc"/></animateMotion>
+  <g clip-path="url(#clip${seed})">
+    <rect width="${W}" height="${HZ}" fill="url(#sky${seed})"/>
+    ${stars}
+    <rect width="${W}" height="${HZ}" fill="url(#halo${seed})"/>
+    ${dusk ? "" : `<circle cx="${SX}" cy="${HZ - 16}" r="19" fill="#fffaf0"><animate attributeName="r" values="19;20.5;19" dur="5s" repeatCount="indefinite"/></circle>`}
+    <g filter="url(#soft${seed})">${clouds}<animateTransform attributeName="transform" type="translate" values="0 0;46 0;0 0" dur="60s" repeatCount="indefinite"/></g>
+    ${farCity}
+    ${hills}
+    <rect y="${HZ}" width="${W}" height="${H - HZ}" fill="url(#sea${seed})"/>
+    <rect y="${HZ}" width="${W}" height="${H - HZ}" fill="url(#halo${seed})" opacity=".55"/>
+    <g id="city${seed}">${city}</g>
+    <g>${windows}</g>
+    ${bridge}
+    ${deckLights}${traffic}
+    <g mask="url(#refl${seed})" opacity="${dusk ? 0.55 : 0.4}">
+      <use href="#city${seed}" transform="translate(0 ${2 * HZ}) scale(1 -1)"/>
+      <use href="#bridge${seed}" transform="translate(0 ${2 * HZ}) scale(1 -1)"/>
     </g>
-
-    <g text-anchor="middle">
-      <g class="in" style="animation-delay:.1s">
-        <rect x="466" y="70" width="268" height="30" rx="15" fill="${PEACH}" fill-opacity=".08" stroke="${PEACH}" stroke-opacity=".35"/>
-        <circle cx="490" cy="85" r="4" fill="#39d353"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite"/></circle>
-        <text class="m" x="610" y="90" font-size="12.5" letter-spacing="3" fill="${PEACH}">BUILDING IN PUBLIC</text>
-      </g>
-      <g class="in" style="animation-delay:.3s">
-        <text class="t" x="600" y="186" font-size="86" font-weight="800" letter-spacing="8" fill="url(#shine)">MANAN SHAH</text>
-      </g>
-      <rect x="450" y="210" width="300" height="2" rx="1" fill="url(#rule)">
-        <animate attributeName="width" values="0;300" dur="1.2s" begin=".6s" fill="freeze"/>
-        <animate attributeName="x" values="600;450" dur="1.2s" begin=".6s" fill="freeze"/>
-      </rect>
-      <g class="m" font-size="17" letter-spacing="2.6" fill="#dcd8d0">
-        ${roles.map((r, i) => `<text x="600" y="254" opacity="0">${esc(r)}<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;${k1};${k2};${k3};1" dur="${cycle}s" begin="${(i * slot).toFixed(1)}s" repeatCount="indefinite"/></text>`).join("\n        ")}
-      </g>
-    </g>
-    <g class="m in" font-size="11.5" fill="${DIM}" style="animation-delay:.9s">
-      <text x="34" y="${H - 26}">~/mananshah2254 <tspan fill="${PEACH}">$</tspan> ship --prod<tspan class="blink" fill="${PEACH}"> ▍</tspan></text>
-      <text x="${W - 34}" y="${H - 26}" text-anchor="end">37.77° N, 122.42° W</text>
-    </g>
+    ${swell}
+    ${glitter}
+    <rect width="${W}" height="${H}" fill="url(#scrim${seed})"/>
+    ${plane}
+    ${copy}
+    ${strip}
   </g>
-  <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="19" fill="none" stroke="${PEACH}" stroke-opacity=".2" stroke-width="1.5"/>
+  <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="17.5" fill="none" stroke="${INK}" stroke-opacity=".1" stroke-width="1.5"/>
+  <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="17.5" fill="none" stroke="url(#edge${seed})" stroke-width="1.5" opacity=".7"/>
 </svg>
 `;
+}
+
+/* the instrument strip along the bottom edge, same as the portfolio's */
+const instruments = (H, sector, line, gauges) => `
+    <rect y="${H - 38}" width="1200" height="38" fill="#080912" opacity=".86"/>
+    <path d="M 0 ${H - 38} H 1200" stroke="${INK}" stroke-opacity=".1"/>
+    <text class="m" x="36" y="${H - 14}" font-size="11.5" letter-spacing="2.2" fill="${PEACH}">${esc(sector)}</text>
+    <text class="m" x="232" y="${H - 14}" font-size="11.5" letter-spacing="2.2" fill="${DIM}">${esc(line)}</text>
+    <text class="m" x="1164" y="${H - 14}" text-anchor="end" font-size="11.5" letter-spacing="2.2" fill="${DIM}" xml:space="preserve">${esc(gauges)}</text>`;
+
+function banner() {
+  const H = 440;
+  // four lines that take turns under the headline. keyTimes must end at 1.
+  const rotating = [
+    "RAG PIPELINES · AGENTIC WORKFLOWS · SEMANTIC SEARCH",
+    "SIX PRODUCTS SHIPPED, FIVE ON THEIR OWN DOMAINS",
+    "PYTHON · TYPESCRIPT · SWIFT · JAVA",
+    "37.77° N, 122.42° W · OPEN TO RELOCATE",
+  ];
+  const copy = `
+    <g class="rise" style="animation-delay:.1s">
+      <circle class="ping" cx="70" cy="92" r="4" fill="#39d353"/><circle cx="70" cy="92" r="4" fill="#39d353"/>
+      <text class="m" x="86" y="96.5" font-size="13" letter-spacing="3.4" fill="${PEACH}">AI ENGINEER · PAYPAL · SAN FRANCISCO</text>
+    </g>
+    <g class="rise" style="animation-delay:.25s">
+      <text class="t" x="60" y="186" font-size="86" font-weight="800" letter-spacing="-2.6" fill="${INK}">Manan Shah</text>
+    </g>
+    <g class="rise" style="animation-delay:.45s">
+      <text class="t" x="64" y="240" font-size="27" font-weight="500" fill="${INK}">Building <tspan class="s" fill="${PEACH}" font-size="31" font-weight="400">LLM systems</tspan> that hold up in production.</text>
+    </g>
+    <g class="rise" style="animation-delay:.65s">
+      <path d="M 64 272 H 104" stroke="${PEACH}" stroke-width="2" stroke-linecap="round"/>
+      ${rotating.map((t, i) => `<text class="m" x="118" y="276.5" font-size="12.5" letter-spacing="2.4" fill="${INK}" opacity="0">${esc(t)}<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.22;.25;1" dur="16s" begin="${i * 4}s" repeatCount="indefinite"/></text>`).join("\n      ")}
+    </g>`;
+  return scene({
+    H, HZ: 300, dusk: false, seed: 4242, copy,
+    strip: instruments(H, "01 — TAKEOFF", "WHEELS UP OVER THE BAY. GOLDEN HOUR, CLEAR SKIES.", "ALT 1770 FT   SPD 168 KT"),
+    label: "Manan Shah. AI Engineer at PayPal in San Francisco. Building LLM systems that hold up in production. An animated bay at golden hour: the sun setting through a suspension bridge, a skyline, and a floatplane crossing the sky.",
+  });
 }
 writeFileSync(new URL("banner.svg", OUT), banner());
 
@@ -312,7 +468,7 @@ function terminal() {
     ["kv", "stack", "[ Python, FastAPI, Amazon Bedrock, Pinecone, Kafka, Kubernetes ]"],
     ["kv", "background", "3+ yrs across fintech and enterprise insurance"],
     ["kv", "education", "MS Computer Science, Illinois Tech, 2025"],
-    ["kv", "shipping", "DialDo · Repo Run · TrailMail · GitPixelPush · Relay (App Store) · OutreachOS"],
+    ["kv", "shipping", "DialDo · Repo Run · Remote Window · TrailMail · GitPixelPush · Relay (App Store)"],
     ["ok", "ambiguous problem in, working system out."],
   ];
   const H = 64 + rows.length * 27 + 34;
@@ -397,34 +553,128 @@ function timeline() {
 writeFileSync(new URL("timeline.svg", OUT), timeline());
 
 /* ------------------------------------------------------------------ */
-/*  section divider + footer                                           */
+/*  divider: a flight path with a plane on it                          */
 /* ------------------------------------------------------------------ */
-writeFileSync(new URL("divider.svg", OUT), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 24" width="1200" height="24" role="presentation">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${PEACH}" stop-opacity="0"/><stop offset=".5" stop-color="${PEACH}"/><stop offset="1" stop-color="${PEACH}" stop-opacity="0"/>
-    <animateTransform attributeName="gradientTransform" type="translate" values="-1200 0;1200 0" dur="5s" repeatCount="indefinite"/></linearGradient></defs>
-  <path d="M 0 12 H 1200" stroke="${PEACH}" stroke-opacity=".15"/>
-  <path d="M 0 12 H 1200" stroke="url(#g)" stroke-width="1.6"/>
-  <circle cx="600" cy="12" r="3.5" fill="${PEACH}"><animate attributeName="r" values="2.5;4.5;2.5" dur="2.4s" repeatCount="indefinite"/></circle>
+writeFileSync(new URL("divider.svg", OUT), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 28" width="1200" height="28" role="presentation">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${PEACH}" stop-opacity="0"/><stop offset=".5" stop-color="${PEACH}" stop-opacity=".5"/><stop offset="1" stop-color="${PEACH}" stop-opacity="0"/></linearGradient></defs>
+  <path d="M 0 14 H 1200" stroke="url(#g)" stroke-dasharray="2 7"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="-40 14;1240 14" dur="14s" repeatCount="indefinite"/>
+    <path d="M -46 0 H -12" stroke="${PEACH}" stroke-opacity=".5" stroke-linecap="round"/>
+    <path d="M -10 0 L -14 -6 L -10 -6 L -5 -2 L 6 -2 Q 11 -2 12 0 Q 11 2 6 2 L -8 2 Z" fill="${PEACH}"/>
+    <rect x="-3" y="-5" width="10" height="1.6" rx=".8" fill="${PEACH}"/>
+    <rect x="-6" y="4.4" width="14" height="1.8" rx=".9" fill="${PEACH}" opacity=".8"/>
+  </g>
 </svg>
 `);
 
-writeFileSync(new URL("footer.svg", OUT), (() => {
-  const W = 1200, H = 150;
-  const wave = (amp, ph, op, dur) => {
-    const pts = (shift) => Array.from({ length: 61 }, (_, i) => {
-      const x = i * 20, env = Math.sin((i / 60) * Math.PI);
-      return `${x},${(75 + Math.sin(i * 0.45 + ph + shift) * amp * env).toFixed(1)}`;
-    }).join(" ");
-    return `<polyline fill="none" stroke="${PEACH}" stroke-width="2" stroke-linecap="round" opacity="${op}" points="${pts(0)}"><animate attributeName="points" values="${pts(0)};${pts(Math.PI)};${pts(0)}" dur="${dur}s" repeatCount="indefinite"/></polyline>`;
-  };
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Thanks for stopping by.">
-  <defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${PEACH}" stop-opacity=".14"/><stop offset="1" stop-color="${PEACH}" stop-opacity="0"/></radialGradient></defs>
-  <rect width="${W}" height="${H}" fill="url(#g)"/>
-  ${wave(26, 0, 0.9, 5)}${wave(18, 1.6, 0.35, 6.5)}${wave(34, 3.1, 0.18, 8)}
-  <rect x="455" y="58" width="290" height="34" rx="17" fill="${BG0}" stroke="${PEACH}" stroke-opacity=".35"/>
-  <text x="600" y="80" text-anchor="middle" font-family="${MONO}" font-size="13" letter-spacing="2.5" fill="${INK}">THANKS FOR STOPPING BY</text>
+/* ------------------------------------------------------------------ */
+/*  footer: the same bay, an hour later                                */
+/* ------------------------------------------------------------------ */
+writeFileSync(new URL("footer.svg", OUT), scene({
+  H: 300, HZ: 196, dusk: true, seed: 9001,
+  copy: `
+    <g class="rise" style="animation-delay:.2s">
+      <text class="m" x="64" y="84" font-size="12.5" letter-spacing="3.2" fill="${PEACH}">THE PART WHERE YOU SAY HELLO</text>
+      <text class="t" x="60" y="140" font-size="46" font-weight="800" letter-spacing="-1.2" fill="${INK}">Thanks for <tspan class="s" fill="${PEACH}" font-weight="400" font-size="50">flying by.</tspan></text>
+      <text class="t" x="64" y="176" font-size="17" fill="${INK}" opacity=".82">Ambiguous problem in, working system out.</text>
+    </g>`,
+  strip: instruments(300, "09 — LANDING", "FINAL APPROACH AT DUSK. SEND THE EMAIL, BRING HER HOME.", "ALT 0650 FT   SPD 168 KT"),
+  label: "Thanks for flying by. The same bay at dusk: city lights on, the bridge in silhouette against the afterglow, the floatplane on final approach.",
+}));
+
+/* ------------------------------------------------------------------ */
+/*  link buttons: one small SVG each, so each can be its own anchor    */
+/* ------------------------------------------------------------------ */
+const glyphs = {
+  portfolio: `<path d="M -8 5 L 0 -8 L 8 5 L 0 1.5 Z" fill="currentColor"/>`,
+  linkedin: `<rect x="-8" y="-8" width="16" height="16" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M -4 -1 V 4 M -4 -4.4 V -4.2 M 0 4 V -1 M 0 1 Q 0 -1.4 2.2 -1.4 Q 4.4 -1.4 4.4 1 V 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>`,
+  email: `<rect x="-9" y="-6.5" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M -8 -5 L 0 1.5 L 8 -5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>`,
+  resume: `<path d="M -6 -9 H 3 L 7 -5 V 9 H -6 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M -2.5 -1 H 3.5 M -2.5 3.5 H 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>`,
+};
+function button(key, text, primary) {
+  const W = Math.round(text.length * 11.4 + 86), H = 52;
+  const fg = primary ? "#1a120a" : INK;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(text)}">
+  <defs><linearGradient id="e" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="${primary ? 0.55 : 0.85}"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    <animateTransform attributeName="gradientTransform" type="translate" values="-${W} 0;${W} 0" dur="3.6s" repeatCount="indefinite"/></linearGradient></defs>
+  <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="${H / 2 - 1}" fill="${primary ? PEACH : BG0}" stroke="${primary ? PEACH : INK}" stroke-opacity="${primary ? 1 : 0.22}" stroke-width="1.5"/>
+  <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="${H / 2 - 1}" fill="none" stroke="url(#e)" stroke-width="1.5"/>
+  <g transform="translate(34 26)" color="${primary ? "#1a120a" : PEACH}">${glyphs[key]}</g>
+  <text x="56" y="31" font-family="${MONO}" font-size="14" font-weight="600" letter-spacing="2.6" fill="${fg}">${esc(text)}</text>
 </svg>
 `;
-})());
+}
+for (const [key, text, primary] of [["portfolio", "PORTFOLIO", true], ["linkedin", "LINKEDIN"], ["email", "EMAIL"], ["resume", "RÉSUMÉ"]]) {
+  writeFileSync(new URL(`btn-${key}.svg`, OUT), button(key, text, primary));
+}
 
-console.log("built:", ["banner", "terminal", "timeline", "divider", "footer", ...products.map(p => "card-" + p.key)].join(", "));
+/* ------------------------------------------------------------------ */
+/*  section headers: numbered, on their own dark bar so they read the  */
+/*  same on GitHub's light and dark themes                             */
+/* ------------------------------------------------------------------ */
+function header(n, title, note) {
+  const W = 1200, H = 76;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(title)}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${BG1}"/><stop offset="1" stop-color="${BG0}"/></linearGradient>
+    <linearGradient id="e" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${PEACH}" stop-opacity="0"/><stop offset=".5" stop-color="${PEACH}"/><stop offset="1" stop-color="${PEACH}" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="-1200 0;1200 0" dur="6s" repeatCount="indefinite"/></linearGradient>
+  </defs>
+  <rect width="${W}" height="${H}" rx="16" fill="url(#bg)"/>
+  <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="15.5" fill="none" stroke="${INK}" stroke-opacity=".09" stroke-width="1.5"/>
+  <path d="M 30 ${H - 1} H ${W - 30}" stroke="url(#e)" stroke-width="1.5"/>
+  <text x="34" y="46" font-family="${MONO}" font-size="14" letter-spacing="3" fill="${PEACH}">${n}</text>
+  <text x="80" y="50" font-family="${SANS}" font-size="32" font-weight="800" letter-spacing="-.6" fill="${INK}">${esc(title)}</text>
+  <text x="${W - 34}" y="46" text-anchor="end" font-family="${MONO}" font-size="12" letter-spacing="2.6" fill="${DIM}">${esc(note)}</text>
+</svg>
+`;
+}
+for (const [slug, n, title, note] of [
+  ["shipped", "01", "Shipped", "LIVE, USED BY STRANGERS, MAINTAINED"],
+  ["live", "02", "Live from the workbench", "REGENERATED DAILY BY AN ACTION"],
+  ["stack", "03", "The stack", "TOOLS ARE TEMPORARY. SYSTEMS THINKING ISN'T."],
+  ["path", "04", "Where I have been", "FINTECH, WITH ENTERPRISE INSURANCE BEFORE IT"],
+  ["graph", "05", "The graph, eaten", "PAINTED WITH GITPIXELPUSH"],
+]) writeFileSync(new URL(`h-${slug}.svg`, OUT), header(n, title, note));
+
+/* ------------------------------------------------------------------ */
+/*  the stack: one panel, four columns, no third-party icon service    */
+/* ------------------------------------------------------------------ */
+function stack() {
+  const W = 1200, COLW = 264, X0 = 36, GAP = 24;
+  const cols = [
+    ["GENERATIVE AI", PEACH, ["RAG", "AI agents", "Tool calling", "MCP", "Embeddings", "Semantic search", "Prompt engineering", "LLM evaluation"]],
+    ["AI PLATFORMS + DATA", "#c49bff", ["Amazon Bedrock", "LangChain", "LangGraph", "OpenAI API", "Anthropic Claude", "Hugging Face", "Pinecone", "ChromaDB", "PostgreSQL", "MongoDB", "Redis"]],
+    ["LANGUAGES + BACKEND", "#8ab4ff", ["Python", "TypeScript", "Java 17", "Swift", "JavaScript", "SQL", "FastAPI", "Spring Boot", "Node.js", "REST APIs", "Microservices", "Apache Kafka"]],
+    ["CLOUD + SHIPPING", "#8fd3a8", ["AWS", "EKS", "Lambda", "Docker", "Kubernetes", "GitHub Actions", "Cloudflare Workers", "Electron", "WebRTC", "Chrome MV3", "Code signing"]],
+  ];
+  let maxY = 0;
+  const body = cols.map(([title, color, items], ci) => {
+    const x0 = X0 + ci * (COLW + GAP);
+    let x = 0, y = 0, chips = "";
+    items.forEach((t, i) => {
+      const w = Math.round(t.length * 7.5 + 24);
+      if (x + w > COLW) { x = 0; y += 34; }
+      chips += `<g transform="translate(${x} ${y})" opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="${(0.2 + ci * 0.18 + i * 0.05).toFixed(2)}s" fill="freeze"/>
+        <rect width="${w}" height="26" rx="13" fill="${color}" fill-opacity=".08" stroke="${color}" stroke-opacity=".3"/><text x="${w / 2}" y="17.5" text-anchor="middle" font-family="${MONO}" font-size="12" fill="${INK}" opacity=".9">${esc(t)}</text></g>`;
+      x += w + 8;
+    });
+    maxY = Math.max(maxY, y);
+    return `<g transform="translate(${x0} 40)">
+      <circle cx="5" cy="5" r="4" fill="${color}"><animate attributeName="opacity" values="1;.3;1" dur="${2.4 + ci * 0.4}s" repeatCount="indefinite"/></circle>
+      <text x="18" y="9.5" font-family="${MONO}" font-size="12" letter-spacing="2.4" fill="${color}">${esc(title)}</text>
+      <path d="M 0 26 H ${COLW}" stroke="${color}" stroke-opacity=".22"/>
+      <g transform="translate(0 44)">${chips}</g>
+    </g>`;
+  }).join("\n  ");
+  const H = 40 + 44 + maxY + 26 + 34;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Stack. ${cols.map(([t, , items]) => `${t}: ${items.join(", ")}`).join(". ")}.">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${BG0}"/><stop offset="1" stop-color="${BG1}"/></linearGradient></defs>
+  <rect width="${W}" height="${H}" rx="16" fill="url(#bg)"/>
+  <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="15.5" fill="none" stroke="${INK}" stroke-opacity=".09" stroke-width="1.5"/>
+  ${body}
+</svg>
+`;
+}
+writeFileSync(new URL("stack.svg", OUT), stack());

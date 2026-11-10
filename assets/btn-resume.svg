@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154 52" width="154" height="52" role="img" aria-label="RÉSUMÉ">
+  <defs><linearGradient id="e" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="0.85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    <animateTransform attributeName="gradientTransform" type="translate" values="-154 0;154 0" dur="3.6s" repeatCount="indefinite"/></linearGradient></defs>
+  <rect x="1" y="1" width="152" height="50" rx="25" fill="#0a0b16" stroke="#f7f5f0" stroke-opacity="0.22" stroke-width="1.5"/>
+  <rect x="1" y="1" width="152" height="50" rx="25" fill="none" stroke="url(#e)" stroke-width="1.5"/>
+  <g transform="translate(34 26)" color="#ffab70"><path d="M -6 -9 H 3 L 7 -5 V 9 H -6 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M -2.5 -1 H 3.5 M -2.5 3.5 H 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></g>
+  <text x="56" y="31" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="600" letter-spacing="2.6" fill="#f7f5f0">RÉSUMÉ</text>
+</svg>

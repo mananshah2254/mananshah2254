@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 76" width="1200" height="76" role="img" aria-label="Live from the workbench">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#11132a"/><stop offset="1" stop-color="#0a0b16"/></linearGradient>
+    <linearGradient id="e" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffab70" stop-opacity="0"/><stop offset=".5" stop-color="#ffab70"/><stop offset="1" stop-color="#ffab70" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="-1200 0;1200 0" dur="6s" repeatCount="indefinite"/></linearGradient>
+  </defs>
+  <rect width="1200" height="76" rx="16" fill="url(#bg)"/>
+  <rect x=".75" y=".75" width="1198.5" height="74.5" rx="15.5" fill="none" stroke="#f7f5f0" stroke-opacity=".09" stroke-width="1.5"/>
+  <path d="M 30 75 H 1170" stroke="url(#e)" stroke-width="1.5"/>
+  <text x="34" y="46" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" letter-spacing="3" fill="#ffab70">02</text>
+  <text x="80" y="50" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-.6" fill="#f7f5f0">Live from the workbench</text>
+  <text x="1166" y="46" text-anchor="end" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.6" fill="#a9a4b8">REGENERATED DAILY BY AN ACTION</text>
+</svg>
